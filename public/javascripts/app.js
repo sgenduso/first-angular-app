@@ -1,4 +1,9 @@
-var app = angular.module('reddit', ['ngMdIcons']);
+var app = angular.module('reddit', ['ngMdIcons', 'angularMoment']);
+
+app.constant('angularMomentConfig', {
+    preprocess: 'unix', // optional
+    // timezone: 'Europe/London' // optional
+});
 
 app.controller('Posts', function ($scope) {
   $scope.posts=[
@@ -7,7 +12,7 @@ app.controller('Posts', function ($scope) {
       author: 'puppup',
       imgUrl: 'http://www.eveshamvet.com/wp-content/uploads/2015/06/Evesham-Veterinary-Clinic-Marlton-NJ-Puppies.jpg',
       description: 'zomgpuppies',
-      voteCount: null,
+      voteCount: 0,
       datePosted: new Date(),
       comments: [],
       // commentCount: this.comments.length
@@ -18,7 +23,7 @@ app.controller('Posts', function ($scope) {
       author: 'puppup',
       imgUrl: 'http://media.mydogspace.com.s3.amazonaws.com/wp-content/uploads/2013/08/puppy-500x350.jpg',
       description: 'i think your collar is too big',
-      voteCount: null,
+      voteCount: 0,
       datePosted: new Date(),
       comments: [],
       // commentCount: this.comments.length
@@ -30,12 +35,17 @@ app.controller('Posts', function ($scope) {
       author: 'puppup',
       imgUrl: 'http://cdn.sheknows.com/articles/2013/04/Photo_1.jpg',
       description: 'i say, that is sir pup to you',
-      voteCount: null,
+      voteCount: 0,
       datePosted: new Date(),
       comments: [],
       // commentCount: this.comments.length
       commentCount: 0
-
     },
   ];
 });
+
+app.filter('fromNow', function() {
+    return function(dateString) {
+      return moment(dateString).fromNow();
+    };
+  });

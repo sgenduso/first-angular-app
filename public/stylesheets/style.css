@@ -71,15 +71,16 @@ div{
 .other-stuff{
   border: 1px solid blue;
   display: inline-block;
+  vertical-align: top;
 }
 
 .date, .comments, .add-comment{
   display: inline-block;
 }
 
-.title{
-
-  /*float: left;*/
+.title, .author, .description{
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .author{

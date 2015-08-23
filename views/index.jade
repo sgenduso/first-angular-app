@@ -21,7 +21,7 @@ block content
               |  | 
               ng-md-icon(icon='keyboard_arrow_up' ng-click='upVote()')
               ng-md-icon(icon='keyboard_arrow_down' ng-click='downVote()')
-              {{voteCount}}
+              {{post.voteCount}}
           div.author
             p by 
               ='{{post.author}}'
@@ -30,7 +30,8 @@ block content
           div.comments
             p.date
               ng-md-icon(icon='event')
-              {{post.datePosted | date}}
+              //- span(am-time-ago="post.datePosted")
+              {{post.datePosted | fromNow}}
             p.comments |  
               ng-md-icon(icon='mode_comment')
               {{post.commentCount}} 
