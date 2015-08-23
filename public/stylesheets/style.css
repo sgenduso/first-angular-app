@@ -57,3 +57,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+div{
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.pic{
+  border: 1px solid green;
+  display: inline-block;
+}
+
+.other-stuff{
+  border: 1px solid blue;
+  display: inline-block;
+}
