@@ -87,3 +87,11 @@ div.post{
   /*float: right;*/
   text-align: right;
 }
+
+.green{
+  color: green;
+}
+
+.red{
+  color: red;
+}

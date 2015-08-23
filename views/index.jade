@@ -7,11 +7,11 @@ block content
     |Submit Post
     input(type='text' id='search' name='search' placeholder='Search')
     |Sort By {{sort}}
-    select(ng-model='sort' ng-init="sort='votes'")
-      option(value='Votes') Votes
-      option(value='Date') Date
+    select(ng-model='sort')
+      option(value='voteCount') Votes
+      option(value='datePosted') Date
     section(ng-controller='Posts')
-      div.post(ng-controller='Posts' ng-repeat='post in posts')
+      div.post(ng-controller='Posts' ng-repeat='post in posts | orderBy: sort : reverse=true')
         div.pic
           img(ng-src='{{post.imgUrl}}' width='200' alt='{{post.imgUrl}}')
         div.other-stuff
@@ -21,7 +21,7 @@ block content
               |  | 
               ng-md-icon(icon='keyboard_arrow_up' ng-click='upVote(post)')
               ng-md-icon(icon='keyboard_arrow_down' ng-click='downVote(post)')
-              {{post.voteCount}}
+              span(ng-class='{green:post.voteCount>0, red:post.voteCount<0}'){{post.voteCount}}
           div.author
             p by 
               ='{{post.author}}'
