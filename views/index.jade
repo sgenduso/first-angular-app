@@ -16,23 +16,27 @@ block content
           img(ng-src='{{post.imgUrl}}' width='200' alt='{{post.imgUrl}}')
         div.other-stuff
           div.title
-            p by 
+            p
               ='{{post.title}}'
               |  | 
               ng-md-icon(icon='keyboard_arrow_up' ng-click='upVote()')
               ng-md-icon(icon='keyboard_arrow_down' ng-click='downVote()')
               {{voteCount}}
           div.author
-            p='{{post.author}}'
+            p by 
+              ='{{post.author}}'
           div.description
             p='{{post.description}}'
           div.comments
             p.date
               ng-md-icon(icon='event')
-              {{post.datePosted}}
-            p.comments
+              {{post.datePosted | date}}
+            p.comments |  
               ng-md-icon(icon='mode_comment')
-              {{comentCount}} comments
-            p.addComment
+              {{post.commentCount}} 
+              ng-pluralize(count='post.commentCount', 
+                when="{'1': 'comment',\
+                  'other': 'comments'}")
+            p.add-comment | 
               ng-md-icon(icon='create')
               |Add Comment

@@ -11,6 +11,7 @@ app.controller('Posts', function ($scope) {
       datePosted: new Date(),
       comments: [],
       // commentCount: this.comments.length
+      commentCount: 1
     },
     {
       title: 'collar pup',
@@ -21,6 +22,8 @@ app.controller('Posts', function ($scope) {
       datePosted: new Date(),
       comments: [],
       // commentCount: this.comments.length
+      commentCount: 0
+
     },
     {
       title: 'sir pup',
@@ -31,6 +34,8 @@ app.controller('Posts', function ($scope) {
       datePosted: new Date(),
       comments: [],
       // commentCount: this.comments.length
+      commentCount: 0
+
     },
   ];
 });

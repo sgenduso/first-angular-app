@@ -72,3 +72,17 @@ div{
   border: 1px solid blue;
   display: inline-block;
 }
+
+.date, .comments, .add-comment{
+  display: inline-block;
+}
+
+.title{
+
+  /*float: left;*/
+}
+
+.author{
+  /*float: right;*/
+  text-align: right;
+}
