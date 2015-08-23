@@ -11,7 +11,7 @@ block content
       option(value='Votes') Votes
       option(value='Date') Date
     section(ng-controller='Posts')
-      div(ng-controller='Posts' ng-repeat='post in posts')
+      div.post(ng-controller='Posts' ng-repeat='post in posts')
         div.pic
           img(ng-src='{{post.imgUrl}}' width='200' alt='{{post.imgUrl}}')
         div.other-stuff
@@ -19,8 +19,8 @@ block content
             p
               ='{{post.title}}'
               |  | 
-              ng-md-icon(icon='keyboard_arrow_up' ng-click='upVote()')
-              ng-md-icon(icon='keyboard_arrow_down' ng-click='downVote()')
+              ng-md-icon(icon='keyboard_arrow_up' ng-click='upVote(post)')
+              ng-md-icon(icon='keyboard_arrow_down' ng-click='downVote(post)')
               {{post.voteCount}}
           div.author
             p by 

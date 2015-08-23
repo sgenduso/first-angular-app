@@ -42,6 +42,12 @@ app.controller('Posts', function ($scope) {
       commentCount: 0
     },
   ];
+  $scope.upVote = function (post) {
+    post.voteCount++;
+  };
+  $scope.downVote = function (post) {
+    post.voteCount--;
+  };
 });
 
 app.filter('fromNow', function() {

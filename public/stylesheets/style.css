@@ -58,7 +58,7 @@ a {
   color: #00B7FF;
 }
 
-div{
+div.post{
   border: 1px solid black;
   margin: 10px;
 }
