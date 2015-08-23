@@ -1,16 +1,27 @@
 extends layout
 
 block content
-  div.nav
+  div.nav(ng-controller='Posts')
     |Reddit Clone
-    ng-md-icon(icon='add')
+    ng-md-icon(icon='add' ng-click='toggleForm()')
     |Submit Post
     input(type='text' id='search' name='search' placeholder='Search')
     |Sort By {{sort}}
     select(ng-model='sort')
       option(value='voteCount') Votes
       option(value='datePosted') Date
-    section(ng-controller='Posts')
+    section
+      div.newPost(ng-show='showForm')
+        form(ng-submit='addPost()')
+          label(for='title') Title
+          input(type='text' id='title' ng-model='title')
+          label(for='author') Author
+          input(type='text' id='author' ng-model='author')
+          label(for='img_url') Image URL
+          input(type='text' id='img_url' ng-model='imgUrl')
+          label(for='description') Description
+          input(type='text' id='description' ng-model='description')
+          input(type='submit' value='Submit Post')
       div.post(ng-controller='Posts' ng-repeat='post in posts | orderBy: sort : reverse=true')
         div.pic
           img(ng-src='{{post.imgUrl}}' width='200' alt='{{post.imgUrl}}')

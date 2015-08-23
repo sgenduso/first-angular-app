@@ -6,6 +6,29 @@ app.constant('angularMomentConfig', {
 });
 
 app.controller('Posts', function ($scope) {
+  $scope.showForm = false;
+  $scope.upVote = function (post) {
+    post.voteCount++;
+  };
+  $scope.downVote = function (post) {
+    post.voteCount--;
+  };
+  $scope.toggleForm = function () {
+    $scope.showForm = !$scope.showForm;
+  };
+  $scope.addPost = function () {
+    $scope.posts.push({
+      title: $scope.title,
+      author: $scope.author,
+      imgUrl: $scope.imgUrl,
+      description: $scope.description,
+      voteCount: 0,
+      datePosted: new Date(),
+      comments: [],
+      // commentCount: this.comments.length
+      commentCount: 0
+    });
+  };
   $scope.posts=[
     {
       title: 'pups in a row',
@@ -42,12 +65,6 @@ app.controller('Posts', function ($scope) {
       commentCount: 0
     },
   ];
-  $scope.upVote = function (post) {
-    post.voteCount++;
-  };
-  $scope.downVote = function (post) {
-    post.voteCount--;
-  };
 });
 
 app.filter('fromNow', function() {
