@@ -7,6 +7,8 @@ app.constant('angularMomentConfig', {
 
 app.controller('Posts', function ($scope) {
   $scope.showForm = false;
+  $scope.showAddComment = false;
+  $scope.showComments = false;
   $scope.upVote = function (post) {
     post.voteCount++;
   };
@@ -15,6 +17,17 @@ app.controller('Posts', function ($scope) {
   };
   $scope.toggleForm = function () {
     $scope.showForm = !$scope.showForm;
+  };
+  $scope.toggleAddComment = function () {
+    $scope.showAddComment = !$scope.showAddComment;
+  };
+  $scope.toggleShowComments = function () {
+    $scope.showComments = !$scope.showComments;
+  };
+  $scope.isInvalid = function (field) {
+    if (field === '') {
+      field.valid = false;
+    }
   };
   $scope.addPost = function () {
     $scope.posts.push({
@@ -28,6 +41,21 @@ app.controller('Posts', function ($scope) {
       // commentCount: this.comments.length
       commentCount: 0
     });
+    $scope.title = '';
+    $scope.author = '';
+    scope.imgUrl = '';
+    scope.description = '';
+    $scope.isInvalid($scope.author);
+  };
+  $scope.addComment = function (post) {
+    post.comments.push({
+      author: $scope.commentAuthor,
+      comment: $scope.comment
+    });
+    $scope.commentAuthor = '';
+    $scope.comment = '';
+    $scope.toggleAddComment();
+    $scope.toggleShowComments();
   };
   $scope.posts=[
     {
@@ -38,8 +66,6 @@ app.controller('Posts', function ($scope) {
       voteCount: 0,
       datePosted: '2014-12-25',
       comments: [],
-      // commentCount: this.comments.length
-      commentCount: 1
     },
     {
       title: 'collar pup',
@@ -49,9 +75,6 @@ app.controller('Posts', function ($scope) {
       voteCount: 0,
       datePosted: '2015-08-22',
       comments: [],
-      // commentCount: this.comments.length
-      commentCount: 0
-
     },
     {
       title: 'sir pup',
@@ -60,9 +83,15 @@ app.controller('Posts', function ($scope) {
       description: 'i say, that is sir pup to you',
       voteCount: 0,
       datePosted: '2015-05-09',
-      comments: [],
-      // commentCount: this.comments.length
-      commentCount: 0
+      comments: [{
+        author: 'm.ils esq',
+        comment: 'pip pip frosted mini wheat'
+      },
+      {
+        author: 'wentworth',
+      comment: 'would you like some tea m\'poops?'
+      }
+      ],
     },
   ];
 });

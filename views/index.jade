@@ -14,13 +14,13 @@ block content
       div.newPost(ng-show='showForm')
         form(ng-submit='addPost()')
           label(for='title') Title
-          input(type='text' id='title' ng-model='title')
+          input(type='text' id='title' ng-model='title' ng-class='{invalid:title.valid===false}' required)
           label(for='author') Author
-          input(type='text' id='author' ng-model='author')
+          input(type='text' id='author' ng-model='author' ng-class='validity' required)
           label(for='img_url') Image URL
-          input(type='text' id='img_url' ng-model='imgUrl')
+          input(type='text' id='img_url' ng-model='imgUrl' ng-class='validity' required)
           label(for='description') Description
-          input(type='text' id='description' ng-model='description')
+          input(type='text' id='description' ng-model='description' ng-class='validity' required)
           input(type='submit' value='Submit Post')
       div.post(ng-controller='Posts' ng-repeat='post in posts | orderBy: sort : reverse=true')
         div.pic
@@ -34,7 +34,7 @@ block content
               ng-md-icon(icon='keyboard_arrow_down' ng-click='downVote(post)')
               span(ng-class='{green:post.voteCount>0, red:post.voteCount<0}'){{post.voteCount}}
           div.author
-            p by 
+            p By 
               ='{{post.author}}'
           div.description
             p='{{post.description}}'
@@ -44,11 +44,21 @@ block content
               //- span(am-time-ago="post.datePosted")
               {{post.datePosted | fromNow}}
             p.comments |  
-              ng-md-icon(icon='mode_comment')
-              {{post.commentCount}} 
-              ng-pluralize(count='post.commentCount', 
+              ng-md-icon(icon='mode_comment' ng-click='toggleShowComments()')
+              {{post.comments.length}} 
+              ng-pluralize(count='post.comments.length', 
                 when="{'1': 'comment',\
                   'other': 'comments'}")
             p.add-comment | 
-              ng-md-icon(icon='create')
+              ng-md-icon(icon='create' ng-click='toggleAddComment()')
               |Add Comment
+          div.addComment(ng-show='showAddComment')
+            form(ng-submit='addComment(post)')
+              label(for='comment_author') Author
+              input(type='text' id='comment_author' ng-model='commentAuthor')
+              label(for='comment') Comment
+              input(type='text' id='comment' ng-model='comment')
+              input(type='submit' value='Submit Comment')
+          div.showComments(ng-show='showComments' ng-repeat="comment in post.comments")
+            p='{{comment.author}}'
+            p='{{comment.comment}}'
