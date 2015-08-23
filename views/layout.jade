@@ -1,7 +1,13 @@
 doctype html
-html
+html(ng-app='reddit')
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    
   body
     block content
+    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/angular-material-icons/0.5.0/angular-material-icons.min.js")
+
+    script(type="text/javascript" src="https://code.jquery.com/jquery-git2.min.js")
+    script(type="text/javascript" src="javascripts/app.js")
