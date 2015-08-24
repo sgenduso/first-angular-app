@@ -10,18 +10,37 @@ block content
     select(ng-model='sort')
       option(value='voteCount') Votes
       option(value='datePosted') Date
+      option(value='title') Title
     section
       div.newPost(ng-show='showForm')
-        form(ng-submit='addPost()')
-          label(for='title') Title
-          input(type='text' id='title' ng-model='title' ng-class='{invalid:title.valid===false}' required)
-          label(for='author') Author
-          input(type='text' id='author' ng-model='author' ng-class='validity' required)
-          label(for='img_url') Image URL
-          input(type='text' id='img_url' ng-model='imgUrl' ng-class='validity' required)
-          label(for='description') Description
-          input(type='text' id='description' ng-model='description' ng-class='validity' required)
-          input(type='submit' value='Submit Post')
+        form(ng-submit='addPost(postForm.$valid)' name='postForm' novalidate)
+          p
+            label(for='title') Title
+          p
+            input(type='text' id='title' name='title' ng-model='title' ng-class="{submitted: formSubmitted}" required)
+          p
+            label(for='author') Author
+          p
+            input(type='text' id='author' name='author' ng-model='author' ng-class="{submitted: formSubmitted}" required)
+          p
+            label(for='img_url') Image URL
+          p
+            input(type='text' id='img_url' name='img_url' ng-model='imgUrl' ng-class="{submitted: formSubmitted}" required)
+          p
+            label(for='description') Description
+          p
+            input(type='text' id='description' name='description' ng-model='description' ng-class="{submitted: formSubmitted}" required)
+          p
+            input(type='submit' value='Submit Post')
+      div.errors(ng-show="showErrors")
+        p(ng-show="postForm.title.$invalid && postForm.$submitted") Please fill out Title.
+        p(ng-show="postForm.author.$invalid && postForm.$submitted") Please fill out Author.
+        p(ng-show="postForm.img_url.$invalid && postForm.$submitted") Please fill out Image URL.
+        p(ng-show="postForm.description.$invalid && postForm.$submitted") Please fill out Description.
+      //- div.errors(ng-messages="postForm.title.$error" ng-show="postForm.$submitted")
+      //-   div(ng-message="required")
+      //-     | Title is required
+          //NG-CONTROLLER DECLARED FOR THE 2ND TIME -- WHEN AND WHY IS THIS NECESSARY??
       div.post(ng-controller='Posts' ng-repeat='post in posts | orderBy: sort : reverse=true | filter: search')
         div.pic
           img(ng-src='{{post.imgUrl}}' width='200' alt='{{post.imgUrl}}')

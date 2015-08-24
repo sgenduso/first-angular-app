@@ -95,7 +95,11 @@ div.post{
 .red{
   color: red;
 }
-
-.invalid{
+/*
+.ng-invalid input[type='text']{
   background-color: red;
+}*/
+
+.submitted.ng-invalid {
+  border: 1px solid red;
 }
