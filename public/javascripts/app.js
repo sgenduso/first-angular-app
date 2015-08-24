@@ -1,4 +1,4 @@
-var app = angular.module('reddit', ['ngMdIcons', 'angularMoment', 'ngMessages']);
+var app = angular.module('reddit', ['ngMdIcons', 'angularMoment', 'ngMessages', 'ngAnimate']);
 
 app.constant('angularMomentConfig', {
     preprocess: 'unix', // optional
