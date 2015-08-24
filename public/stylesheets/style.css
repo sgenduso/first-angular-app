@@ -103,3 +103,18 @@ div.post{
 .submitted.ng-invalid {
   border: 1px solid red;
 }
+
+.fade.ng-enter,
+.fade.ng-leave {
+ transition:all linear 0.5s;
+}
+
+.fade.ng-leave.ng-leave-active,
+.fade.ng-enter {
+ opacity:0;
+}
+
+.fade.ng-leave,
+.fade.ng-enter.ng-enter-active {
+ opacity:1;
+}

@@ -41,7 +41,7 @@ block content
       //-   div(ng-message="required")
       //-     | Title is required
           //NG-CONTROLLER DECLARED FOR THE 2ND TIME -- WHEN AND WHY IS THIS NECESSARY??
-      div.post(ng-controller='Posts' ng-repeat='post in posts | orderBy: sort : reverse=true | filter: search')
+      div.post.fade(ng-controller='Posts' ng-repeat='post in posts | orderBy: sort : reverse=true | filter: search')
         div.pic
           img(ng-src='{{post.imgUrl}}' width='200' alt='{{post.imgUrl}}')
         div.other-stuff
